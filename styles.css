@@ -1,0 +1,192 @@
+/* Remove unwanted horizontal scroll */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* No horizontal scrolling */
+}
+
+/* Preloader full screen */
+.loading {
+  background: rgba(16, 17, 24, 1);
+  height: 100vh;
+  width: 100vw; /* Use viewport width */
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 2000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center; /* perfectly center */
+  overflow: hidden; /* prevent accidental overflow */
+}
+
+.svg-wrapper {
+  position: relative;
+  width: 90%;       /* responsive scaling */
+  max-width: 600px; /* prevent oversizing */
+}
+
+.svg-wrapper svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.animate {
+  fill: transparent;
+  stroke-dasharray: 1800;
+  stroke-dashoffset: 1800;
+  stroke: #fdad59;
+  stroke-width: 2px;
+}
+
+.text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  width: 90%;
+  padding: 0 10px;
+}
+
+.text .logo {
+  display: block;
+  letter-spacing: 2px;
+  font-size: clamp(16px, 3vw, 24px);
+  padding-bottom: 6px;
+  border-bottom: 1px solid #fff;
+}
+
+.text .motto {
+  display: block;
+  padding-top: 8px;
+  font-size: clamp(10px, 2vw, 14px);
+  letter-spacing: 1.5px;
+}
+
+
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  transition: background 0.3s ease, padding 0.3s ease;
+  z-index: 1000;
+}
+.navbar.transparent { background: transparent; }
+.navbar.scrolled {
+  background: rgba(0,0,0,0.7);
+  padding: 15px 20px;
+}
+.navbar .logo {
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+/* Desktop menu */
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-links li { margin-left: 15px; }
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+.nav-links li a:hover { color: #fdad59; }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+.hamburger span {
+  height: 3px; width: 25px;
+  background: #fff;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+/* Mobile menu */
+@media(max-width: 768px){
+  .nav-links {
+    position: absolute;
+    top: 100%; left: 0;
+    width: 100%;
+    flex-direction: column; /* always column in mobile */
+    background: rgba(0,0,0,0.9);
+    max-height: 0; /* hidden by default */
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .nav-links.open { max-height: 300px; } /* revealed on toggle */
+  .nav-links li {
+    margin: 15px 0;
+    text-align: center;
+  }
+  .hamburger { display: flex; }
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: url('bg1.png') center center/cover no-repeat;
+  display: flex;
+  flex-direction: column; /* keep text stacked */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  z-index: 1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: -1;
+}
+
+.hero h1 {
+  font-size: clamp(22px, 6vw, 42px);
+  letter-spacing: 2px;
+  text-shadow: 0px 2px 5px rgba(0,0,0,0.7);
+  margin: 0;
+}
+
+.hero p {
+  margin-top: 15px;
+  font-size: clamp(14px, 3vw, 18px);
+  letter-spacing: 1px;
+}
+
+/* Next Section */
+.section {
+  height: 100vh;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #333;
+}
